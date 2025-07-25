@@ -19,7 +19,7 @@
     "svelte-check": "^4.2.2",
     "tailwindcss": "^4.1.11",
     "typescript": "~5.8.3",
-    "vite": "^7.0.3"
+    "vite": "^6.0.0"
   },
   "dependencies": {
     "tailwind-variants": "^1.0.0"
