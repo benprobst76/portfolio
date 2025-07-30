@@ -22,7 +22,7 @@
   <section id="strava">
     <StravaSection />
   </section>
-  
+
   <section id="experience">
     <ExperienceSection />
   </section>
@@ -39,7 +39,7 @@
   <footer class="bg-main text-main py-8">
     <div class="max-w-6xl mx-auto px-8 text-center">
       <p class="text-main">
-        © 2025 Ben Probst. Built with SvelteKit and shadcn-svelte.
+        © 2025 Ben Probst. Built with Svelte, Tailwind CSS, and Netlify.
       </p>
     </div>
   </footer>

@@ -1,3 +1,8 @@
+[dev]
+  command = "npm run dev"
+  targetPort = 5174
+  framework = "vite"
+
 [build]
   command = "npm run build"
   publish = "dist"

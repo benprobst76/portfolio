@@ -50,7 +50,7 @@
         <img 
           src="/about.jpeg" 
           alt="Ben Probst" 
-          class="rounded-lg shadow-lg w-full h-64 object-cover"
+          class="rounded-lg shadow-lg w-90 h-90 object-cover"
         />
       </div>
     </div>
