@@ -36,11 +36,59 @@
       average_speed: number;
     }>;
   }
+  type RecentActivityCount = {
+    type: string;
+    count: number;
+  };
 
   let stravaData: StravaStats | null = null;
   let loading = true;
   let error = '';
   let stravaScriptLoaded = false;
+  // Editable recent activity types for the pie chart
+  const recentActivityTypes: RecentActivityCount[] = [
+    { type: 'Outrigger Canoe', count: 7 },
+    { type: 'Dragon Boat', count: 12 },
+    { type: 'Running', count: 9 },
+    { type: 'Weight Training', count: 9 },
+    { type: 'Other', count: 2 }
+  ];
+
+  // Pie chart colors for each type
+  const pieColors: Record<string, string> = {
+    'Outrigger Canoe': '#06b6d4',
+    'Dragon Boat': '#6366f1',
+    'Running': '#ef4444',
+    'Weight Training': '#f59e42',
+    'Other': '#9ca3af'
+  };
+
+  // Calculate total and percentages
+  $: totalActivities = recentActivityTypes.reduce((sum, t) => sum + t.count, 0);
+  $: activityPercentages = recentActivityTypes.map(t => ({
+    ...t,
+    percent: totalActivities ? (t.count / totalActivities) * 100 : 0
+  }));
+
+  // Pie chart path calculation
+  function describeArc(cx: number, cy: number, r: number, startAngle: number, endAngle: number) {
+    const start = polarToCartesian(cx, cy, r, endAngle);
+    const end = polarToCartesian(cx, cy, r, startAngle);
+    const largeArcFlag = endAngle - startAngle <= 180 ? '0' : '1';
+    return [
+      'M', start.x, start.y,
+      'A', r, r, 0, largeArcFlag, 0, end.x, end.y,
+      'L', cx, cy,
+      'Z'
+    ].join(' ');
+  }
+  function polarToCartesian(cx: number, cy: number, r: number, angle: number) {
+    const rad = (angle - 90) * Math.PI / 180.0;
+    return {
+      x: cx + r * Math.cos(rad),
+      y: cy + r * Math.sin(rad)
+    };
+  }
 
   // Helper functions
   function formatTime(seconds: number): string {
@@ -269,7 +317,7 @@
       </div>
 
       <!-- Stats Grid -->
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+      <div class="grid md:grid-cols-2 gap-6 mb-8">
         <!-- All-Time Running Stats -->
         <Card>
           <CardHeader>
@@ -302,7 +350,7 @@
           </CardContent>
         </Card>
 
-        <!-- Recent Running Stats -->
+  <!-- Recent Running Stats -->
         <Card>
           <CardHeader>
             <CardTitle class="flex items-center text-lg">
@@ -334,6 +382,59 @@
             </div>
           </CardContent>
         </Card>
+      </div>
+
+      <!-- Activity Breakdown Section -->
+      <div class="mb-12">
+        <div class="max-w-2xl mx-auto">
+          <Card>
+            <CardHeader>
+              <CardTitle class="text-2xl text-center">
+                Activity Breakdown
+              </CardTitle>
+              <CardDescription class="text-center">Last month's activity distribution</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div class="flex flex-col lg:flex-row items-center justify-center gap-8">
+                <!-- Pie Chart SVG -->
+                <div class="flex flex-col items-center">
+                  <svg width="200" height="200" viewBox="0 0 200 200" class="mb-4">
+                    {#if activityPercentages.length}
+                      {@const piePaths = (() => {
+                        let startAngle = 0;
+                        return activityPercentages.map(({ type, percent }) => {
+                          const endAngle = startAngle + (percent * 3.6);
+                          const path = describeArc(100, 100, 90, startAngle, endAngle);
+                          const color = pieColors[type];
+                          const result = { path, color, type, percent };
+                          startAngle = endAngle;
+                          return result;
+                        });
+                      })()}
+                      {#each piePaths as { path, color }}
+                        <path
+                          d={path}
+                          fill={color}
+                          stroke="#fff"
+                          stroke-width="3"
+                        />
+                      {/each}
+                    {/if}
+                  </svg>
+                  <!-- Legend -->
+                  <div class="flex flex-wrap justify-center gap-3">
+                    {#each activityPercentages as { type, percent }}
+                      <div class="flex items-center">
+                        <span class="inline-block w-4 h-4 rounded-full mr-2" style="background:{pieColors[type]}"></span>
+                        <span class="text-sm text-gray-700">{type} ({percent.toFixed(0)}%)</span>
+                      </div>
+                    {/each}
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
       <!-- Recent Activities -->
       <div class="max-w-4xl mx-auto">
