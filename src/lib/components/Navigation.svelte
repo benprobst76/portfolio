@@ -14,6 +14,14 @@
     }
     isMenuOpen = false;
   }
+  function scrollToDiv(sectionId: string) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    isMenuOpen = false;
+  }
+
 </script>
 
 <nav class="fixed top-0 w-full bg-main/80 backdrop-blur-md shadow-sm z-50">
@@ -21,7 +29,7 @@
     <div class="flex justify-between items-center h-16">
       <!-- Logo -->
       <div class="flex-shrink-0">
-        <span class="text-xl font-bold text-main">Ben Probst</span>
+        <span class="text-xl font-bold text-primary">Ben Probst</span>
       </div>
       
       <!-- Desktop Navigation -->
@@ -29,37 +37,37 @@
         <div class="flex items-center space-x-8">
           <button
             on:click={() => scrollToSection('hero')}
-            class="text-main hover:text-primary transition-colors"
+            class="text-primary hover:text-primary transition-colors"
           >
             Home
           </button>
           <button
             on:click={() => scrollToSection('about')}
-            class="text-main hover:text-primary transition-colors"
+            class="text-primary hover:text-primary transition-colors"
           >
             About
           </button>
           <button
+            on:click={() => scrollToSection('grafana')}
+            class="text-primary hover:text-primary transition-colors"
+          >
+            Homelab
+          </button>
+          <button
             on:click={() => scrollToSection('strava')}
-            class="text-main hover:text-primary transition-colors"
+            class="text-primary hover:text-primary transition-colors"
           >
             Fitness
           </button>
           <button
-            on:click={() => scrollToSection('experience')}
-            class="text-main hover:text-primary transition-colors"
-          >
-            Experience
-          </button>
-          <button
             on:click={() => scrollToSection('projects')}
-            class="text-main hover:text-primary transition-colors"
+            class="text-primary hover:text-primary transition-colors"
           >
             Projects
           </button>
           <button
             on:click={() => scrollToSection('contact')}
-            class="text-main hover:text-primary transition-colors"
+            class="text-primary hover:text-primary transition-colors"
           >
             Contact
           </button>
@@ -79,7 +87,7 @@
       <div class="md:hidden">
         <button
           on:click={toggleMenu}
-          class="text-main hover:text-primary focus:outline-none"
+          class="text-primary hover:text-primary focus:outline-none"
         >
           <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             {#if isMenuOpen}
@@ -99,37 +107,37 @@
       <div class="px-2 pt-2 pb-3 space-y-1 bg-main border-t">
         <button
           on:click={() => scrollToSection('hero')}
-          class="block px-3 py-2 text-main hover:text-primary transition-colors w-full text-left"
+          class="block px-3 py-2 text-primary hover:text-primary transition-colors w-full text-left"
         >
           Home
         </button>
         <button
           on:click={() => scrollToSection('about')}
-          class="block px-3 py-2 text-main hover:text-primary transition-colors w-full text-left"
+          class="block px-3 py-2 text-primary hover:text-primary transition-colors w-full text-left"
         >
           About
         </button>
         <button
           on:click={() => scrollToSection('strava')}
-          class="block px-3 py-2 text-main hover:text-primary transition-colors w-full text-left"
+          class="block px-3 py-2 text-primary hover:text-primary transition-colors w-full text-left"
         >
           Fitness
         </button>
         <button
           on:click={() => scrollToSection('experience')}
-          class="block px-3 py-2 text-main hover:text-primary transition-colors w-full text-left"
+          class="block px-3 py-2 text-primary hover:text-primary transition-colors w-full text-left"
         >
           Experience
         </button>
         <button
           on:click={() => scrollToSection('projects')}
-          class="block px-3 py-2 text-main hover:text-primary transition-colors w-full text-left"
+          class="block px-3 py-2 text-primary hover:text-primary transition-colors w-full text-left"
         >
           Projects
         </button>
         <button
           on:click={() => scrollToSection('contact')}
-          class="block px-3 py-2 text-main hover:text-primary transition-colors w-full text-left"
+          class="block px-3 py-2 text-primary hover:text-primary transition-colors w-full text-left"
         >
           Contact
         </button>

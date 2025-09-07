@@ -1,21 +1,18 @@
-# My Portfolio Website
+# Portfolio Website by Ben Probst
 
-A beautiful, responsive portfolio website built with modern web technologies.
+A beautiful portfolio website built with modern web technologies, showcasing DevOps methodologies and skills.
 
 ## 🚀 Tech Stack
 
-- **Svelte** - Fast, lightweight framework
+- **Svelte** - Intuitive, lightweight framework
 - **TypeScript** - Type-safe development
-- **Tailwind CSS** - Utility-first styling
-- **Vite** - Lightning-fast development
+- **Tailwind CSS** - Clean utility-first styling
+- **Vite** - Fast development and hot reload
 
 ## ✨ Features
 
-- **Responsive Design** - Works perfectly on all devices
-- **Modern UI** - Beautiful components with svelte
-- **Fast Performance** - Optimized with Svelte and Vite
-- **Type Safety** - Full TypeScript support
 - **Strava API** - Live data and recent workouts pull directly from Strava
+- **Grafana Dashboards** - Display real time metrics from a production server
 
 ## 🛠️ Development
 
@@ -40,7 +37,7 @@ A beautiful, responsive portfolio website built with modern web technologies.
    Navigate to `http://localhost:5174`
 
 4. **To test Strava functions**
-   Create a .env file using .env.example and upadate the Strava API tokens
+   Create a .env file using .env.example and update the Strava API tokens
 
    You can use the Netlify CLI:
 
@@ -92,6 +89,6 @@ src/
 npm run build
 ```
 
-Deployed via Netlify at benprobst.me
+Deployed via Netlify at [www.benprobst.biz](https://www.benprobst.biz/)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/e90df316-e7c7-48d9-b2d4-e80a79ae5cba/deploy-status)](https://app.netlify.com/projects/benprobst/deploys)
 ---

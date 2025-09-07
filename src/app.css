@@ -1,68 +1,70 @@
 @import 'tailwindcss';
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css" layer(utilities);
 
-/* Color palette */
+@theme {
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+}
+/* Color palette - Dark Gray, Light Gray, Blue Accents */
 :root {
-  --primary-color: #2a44d7; /* Blue */
-  --secondary-color: #f3f4f6; /* Light Gray */
-  --accent-color: #ef4444; /* Red */
-  --text-color: #1f2937; /* Dark Gray */
-  --background-color: #ffffff; /* White */
+  /* Legacy color variables for existing styles */
+  --primary-color: #3b82f6; /* Blue */
+  --secondary-color: #e5e7eb; /* Light Gray */
+  --accent-color: #1e40af; /* Dark Blue */
+  --text-color: #e5e7eb; /* Light Gray */
+  --background-color: #1f2937; /* Dark Gray */
+
+  /* Tailwind-compatible HSL variables */
+  --background: 210 24% 16%; /* Dark Gray #1f2937 */
+  --foreground: 220 9% 89%; /* Light Gray #e5e7eb */
   
-  /* shadcn-svelte color variables (HSL format) */
-  --background: 0 0% 100%;
-  --foreground: 224 71.4% 4.1%;
-  --card: 0 0% 100%;
-  --card-foreground: 224 71.4% 4.1%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 224 71.4% 4.1%;
-  --primary: 221 83% 53%;
-  --primary-foreground: 210 40% 98%;
-  --secondary: 220 14.3% 95.9%;
-  --secondary-foreground: 220.9 39.3% 11%;
-  --muted: 220 14.3% 95.9%;
-  --muted-foreground: 220 8.9% 46.1%;
-  --accent: 220 14.3% 95.9%;
-  --accent-foreground: 220.9 39.3% 11%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
-  --border: 220 13% 91%;
-  --input: 220 13% 91%;
-  --ring: 221 83% 53%;
-  --radius: 0.5rem;
+  --primary: 217 91% 60%; /* Blue #3b82f6 */
+  --primary-foreground: 0 0% 100%; /* White text on blue */
+  
+  --secondary: 220 14% 96%; /* Very Light Gray #f8fafc */
+  --secondary-foreground: 220 9% 46%; /* Medium Gray */
+  
+  --accent: 217 91% 40%; /* Dark Blue #1e40af */
+  --accent-foreground: 0 0% 100%; /* White text on dark blue */
+  
+  --muted: 220 13% 91%; /* Muted Light Gray #e2e8f0 */
+  --muted-foreground: 220 9% 46%; /* Medium Gray */
+  
+  --destructive: 0 84% 60%; /* Red for errors */
+  --destructive-foreground: 0 0% 100%;
+  
+  --border: 220 13% 91%; /* Light border */
+  --input: 220 13% 91%; /* Input background */
+  --ring: 217 91% 60%; /* Focus ring blue */
+  
+  --card: 0 0% 100%; /* White card background */
+  --card-foreground: 220 9% 46%; /* Dark text on cards */
+  
+  --popover: 0 0% 100%; /* White popover */
+  --popover-foreground: 220 9% 46%; /* Dark text */
+  
+  --radius: 0.5rem; /* Border radius */
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: 224 71.4% 4.1%;
-    --foreground: 210 40% 98%;
-    --card: 224 71.4% 4.1%;
-    --card-foreground: 210 40% 98%;
-    --popover: 224 71.4% 4.1%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 221 83% 53%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 215 27.9% 16.9%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 215 27.9% 16.9%;
-    --muted-foreground: 217.9 10.6% 64.9%;
-    --accent: 215 27.9% 16.9%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 215 27.9% 16.9%;
-    --input: 215 27.9% 16.9%;
-    --ring: 221 83% 53%;
-  }
-}
-
-/* Custom gradient text */
-.gradient-text {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
 /* Custom button styles */
 .btn-primary {
   background-color: var(--primary-color);
@@ -77,7 +79,7 @@
 .btn-primary:hover {
   background-color: var(--accent-color);
   transform: scale(1.05);
-  box-shadow: 0 10px 25px rgba(42, 68, 215, 0.3);
+  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
 }
 
 .btn-outline {
@@ -99,7 +101,23 @@
 
 /* Hero section background */
 section:first-of-type {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+  background: var(--background-color);
+}
+
+h1 {
+  color: var(--primary-color);
+}
+
+h2 {
+  color: var(--accent-color);
+}
+
+h3 {
+  color: var(--accent-color);
+}
+
+p {
+  color: var(--text-color);
 }
 
 /* Smooth scrolling */

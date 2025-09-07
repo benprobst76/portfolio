@@ -4,6 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Core Tailwind-compatible colors
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -37,9 +38,23 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        main: {
-          DEFAULT: "hsl(var(--main))",
-          foreground: "hsl(var(--main-foreground))",
+        // Custom color palette for easy access
+        theme: {
+          'dark-gray': '#1f2937',
+          'light-gray': '#e5e7eb',
+          'blue-primary': '#3b82f6',
+          'blue-accent': '#1e40af',
+          'blue-light': '#60a5fa',
+          'gray-50': '#f8fafc',
+          'gray-100': '#f1f5f9',
+          'gray-200': '#e2e8f0',
+          'gray-300': '#cbd5e1',
+          'gray-400': '#94a3b8',
+          'gray-500': '#64748b',
+          'gray-600': '#475569',
+          'gray-700': '#334155',
+          'gray-800': '#1e293b',
+          'gray-900': '#0f172a',
         },
       },
       borderRadius: {
