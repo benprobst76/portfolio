@@ -124,10 +124,10 @@
           Fitness
         </button>
         <button
-          on:click={() => scrollToSection('experience')}
+          on:click={() => scrollToSection('grafana')}
           class="block px-3 py-2 text-primary hover:text-primary transition-colors w-full text-left"
         >
-          Experience
+          Homelab
         </button>
         <button
           on:click={() => scrollToSection('projects')}

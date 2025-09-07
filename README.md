@@ -78,8 +78,10 @@ src/
 
 ### Content
 - Personal information in component files
-   - About, Experience and Contact
+   - About and Contact
 - Images and Resume in the `public/` directory
+- Fitness metrics collected from Strava API
+- Homelab metrics visualized with embedded Grafana panels
 - Project data in `ProjectsSection.svelte`
 
 ## 🚢 Deployment
